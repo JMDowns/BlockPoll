@@ -1,0 +1,91 @@
+from rest_framework import viewsets, permissions, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from polls.serializers import PollSerializer, BucketSerializer
+from polls.models import Poll, Bucket
+
+@api_view(['GET', 'POST'])
+def poll_list(request):
+    if request.method == 'GET':
+        polls = Poll.objects.all()
+        serializer = PollSerializer(polls, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = PollSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def bucket_create(request, poll, bucket_name, wallet_address):
+    """
+    Create a bucket
+    """
+    try:
+        bucket = Bucket.objects.get(poll=poll, bucket_name=bucket_name)
+        return Response(status=status.HTTP_409_CONFLICT)
+    except Bucket.DoesNotExist:
+        pass
+    poll_obj = Poll.objects.get(poll_id=poll)
+    bucket=Bucket(poll=poll_obj, bucket_name=bucket_name, wallet_address=wallet_address)
+    Bucket.objects.create(poll=poll_obj, bucket_name=bucket_name, wallet_address=wallet_address)
+    serializer = BucketSerializer(bucket)
+    return Response(serializer.data)
+    
+@api_view(['DELETE'])
+def bucket_delete(request, poll, bucket_name):
+    """
+    Delete a bucket
+    """
+    try:
+        bucket = Bucket.objects.get(poll=poll, bucket_name=bucket_name)
+    except Bucket.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    bucket.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['PUT'])
+def bucket_update_name(request, poll, bucket_name, bucket_new_name):
+    """
+    Update a bucket's name
+    """
+    try:
+        bucket = Bucket.objects.get(poll=poll, bucket_name=bucket_name)
+    except Bucket.DoestNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    bucket.bucket_name = bucket_new_name
+    bucket.save()
+    serializer = BucketSerializer(bucket)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+def bucket_details(request, poll, bucket_name):
+    """
+    Retrieve a bucket
+    """
+    try:
+        bucket = Bucket.objects.get(poll=poll, bucket_name=bucket_name)
+    except Bucket.DoestNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = BucketSerializer(bucket)
+    return Response(serializer.data)
+
+class PollViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows polls to be viewed or edited.
+    """
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class BucketViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows buckets to be viewed or edited.
+    """
+    queryset = Bucket.objects.all()
+    serializer_class = BucketSerializer
+    permission_classes = [permissions.IsAuthenticated]
