@@ -1,20 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { HeaderContainer } from './HeaderContainer.style';
+import { Icon } from './Icon.style';
+import iconImg from '../imgs/blockchain.png';
+import { HeaderLinkTitle, HeaderLink, } from './HeaderLink.style';
+import Login from './Login';
 
 
 function Navigation() {
     return (
-        <div className="navigation">
+        <HeaderContainer>
             <div className="container">
-                <Link to="/"> BlockPoll </Link>
-                <Link to="/CreatePoll"> Create Poll </Link>
-                <Link to="/ViewPolls"> View Polls </Link>
-                <Link to="/About"> About </Link>
-                <Link to="/Login"> Login </Link>
-                <Link to="/Signup"> Signup </Link>
-
+                <Icon src={iconImg} /> 
+                <HeaderLinkTitle to="/"> BlockPoll </HeaderLinkTitle>
+                <HeaderLink to="/CreatePoll" left='451px'> Create Poll </HeaderLink>
+                <HeaderLink to="/ViewPolls" left='727px'> View Polls </HeaderLink>
+                <HeaderLink to="/About" left='983px'> About </HeaderLink>
+                <Login /> 
+                {/* <LoginLink to="/Login" left='1539px' color='#C4C4C4'> Login </LoginLink> */}
+                {/* <LoginLink to="/Signup" left='1723px' color='#38A0EB'> Signup </LoginLink> */}
             </div>
-        </div>
+        </HeaderContainer>
     )
 }
 

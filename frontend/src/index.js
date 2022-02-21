@@ -5,7 +5,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import CreatePoll from './routes/CreatePoll';
-import ViewPolls from './routes/ViewPolls'
+import ViewPolls from './routes/ViewPolls';
+import About from './routes/About'; 
+// import Login from './routes/Login';
 
 
 ReactDOM.render(
@@ -15,6 +17,9 @@ ReactDOM.render(
       <Route path='/' element={<App />} /> 
       <Route path='/CreatePoll' element={<CreatePoll />} />
       <Route path='/ViewPolls' element={<ViewPolls />} /> 
+      <Route path='/About' element={<About />} /> 
+      {/* <Route path='/Login' element={<Login />} />  */}
+
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
