@@ -1,10 +1,8 @@
 import React from 'react';
-import Navigation from './Navigation';
-import { GlobalStyles, } from './GlobalStyles.style';
-
 import Button from '@material-ui/core/Button'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import {FormControl, Input, InputLabel, FormHelperText } from '@mui/material/';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -45,7 +43,7 @@ export default function Login() {
     return (
         <div>
             <Button variant="contained" color="primary" left='1000px' onClick={handleOpen}>
-                Open Modal
+                Login
             </Button>
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -54,10 +52,16 @@ export default function Login() {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <h2>Simple React Modal</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi accumsan odio enim, non pharetra est ultrices et.
-                    </p>
+                    <h2>Login</h2>
+                    <FormControl>
+                        <InputLabel htmlFor="my-input">Email address</InputLabel>
+                        <Input id="my-input" aria-describedby="my-helper-text" />
+                    </FormControl>
+
+                    <FormControl>
+                        <InputLabel htmlFor="my-input">Password</InputLabel>
+                        <Input id="my-input" aria-describedby="my-helper-text" />
+                    </FormControl>
                 </div>
             </Modal>
         </div>

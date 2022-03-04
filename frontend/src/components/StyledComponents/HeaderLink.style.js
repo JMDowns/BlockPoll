@@ -18,6 +18,11 @@ export const HeaderLinkTitle = styled(NavLink) `
     color: #000000;
 
     text-decoration: none; 
+
+    transition: all .1s ease-in-out;
+    &:hover {
+        transform: scale(1.05); 
+    }
 `
 
 
@@ -37,32 +42,4 @@ export const HeaderLink = styled(NavLink) `
     text-decoration: none; 
 
     color: rgba(255, 255, 255, 0.76);
-
 `
-
-
-// export const LoginLink = styled(NavLink)`
-//     position: absolute;
-//     width: 144px;
-//     height: 62px;
-//     left: ${(props) => props.left};
-//     top: 29px;
-
-//     background: #C4C4C4;
-//     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-//     border-radius: 22px;
-
-//     font-family: Alata;
-//     font-style: normal;
-//     font-weight: normal;
-//     font-size: 44px;
-//     line-height: 50px;
-
-//     text-decoration: none; 
-//     padding-left: 30px;
-//     padding-top: 10px;
-
-//     background-color: ${(props) => props.color};
-//     color: rgba(255, 255, 255, 0.76);
-
-// `

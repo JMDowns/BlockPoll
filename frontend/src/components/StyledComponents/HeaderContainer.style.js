@@ -6,5 +6,5 @@ export const HeaderContainer = styled.div`
     height: 109px;
     left: 0px;
     top: 0px;
-    background-color: #44A3B0 
+    background-color: #44A3B0;
 `

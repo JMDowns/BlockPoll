@@ -1,14 +1,14 @@
 import './App.css';
 import Navigation from './components/Navigation';
-import { GlobalStyles, } from './components/GlobalStyles.style';
-// import Card from '@mui/material/Card'
-// import BasicCard from './components/BasicCard'
+import { GlobalStyles, } from './components/StyledComponents/GlobalStyles.style';
+import HomePageBody from './components/HomePageBody'; 
 
 function App() {
   return (
     <div> 
-    <GlobalStyles /> 
-      <Navigation /> 
+      <GlobalStyles /> 
+        <Navigation /> 
+        <HomePageBody /> 
     </div> 
   );
 }
