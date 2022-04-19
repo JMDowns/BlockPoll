@@ -65,6 +65,14 @@ const PollState = props => {
     }
 
     // Create bucket
+    const createBucket = async (poll, bucket_name) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/bucket_create/${poll}/${bucket_name}`)
+        dispatch({
+            type: GET_BUCKET,
+            payload: res.data
+        })
+    }
 
     // Get votes    
     const getVotes = async (poll_id, bucket_name) => {
@@ -76,7 +84,17 @@ const PollState = props => {
         })
     }
 
+
     // Cast Vote
+    const castVote = async (poll_id, bucket_name) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/cast_vote/${poll_id}${bucket_name}`)
+        dispatch({
+            type: CAST_VOTE,
+            payload: res.data
+        })
+    }
+   
 
     // set loading
     const setLoading = () => {

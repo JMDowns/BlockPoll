@@ -21,7 +21,7 @@ const Reducer = (state, action) => {
         case GET_VOTES: 
             return {
                 ...state,
-                polls: action.payload,
+                votes: action.payload,
                 loading: false
             }
         case CREATE_POLL:
@@ -42,6 +42,25 @@ const Reducer = (state, action) => {
                 buckets: action.payload,
                 loading: false
             }
+        case GET_BUCKET:
+            return {
+                ...state,
+                buckets: action.payload,
+                loading: false
+            }
+        case CAST_VOTE:
+            return {
+                ...state,
+                votes: action.payload,
+                loading: false
+            }
+        case CREATE_BUCKET:
+            return {
+                ...state,
+                buckets: action.payload,
+                loading: false
+            }
+        
         default: 
         
     }
