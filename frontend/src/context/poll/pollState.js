@@ -19,7 +19,8 @@ const PollState = props => {
         polls: [],
         poll: {},
         buckets: [],
-        loading: false
+        loading: false,
+        votes: 0
     }
 
     const [state, dispatch] = useReducer(PollReducer, initialState) 
@@ -34,16 +35,46 @@ const PollState = props => {
         })
     }
 
-    // Create Poll 
-
+    // Create Poll   
+    const createPoll = async (poll_id, poll_text) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/poll_create/${poll_id}/${poll_text}`)
+            dispatch({
+                type: CREATE_POLL,
+            payload: res.data
+            })
+        }
     // Get buckets of a poll
+    const getPollBuckets = async (poll_id) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/get_buckets_of_poll/${poll_id}`)
+        dispatch({
+            type: GET_BUCKET_OF_POLL,
+            payload: res.data
+        })
+    }
 
     // Get bucket
+    const getBucket = async (poll, bucket_name) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/bucket_details/${poll}/${bucket_name}`)
+        dispatch({
+            type: GET_BUCKET,
+            payload: res.data
+        })
+    }
 
     // Create bucket
 
-    // Get votes
-    // const getVotes = async()
+    // Get votes    
+    const getVotes = async (poll_id, bucket_name) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/get_votes/${poll_id}/${bucket_name}`)
+        dispatch({
+            type: GET_VOTES,
+            payload: res.data
+        })
+    }
 
     // Cast Vote
 

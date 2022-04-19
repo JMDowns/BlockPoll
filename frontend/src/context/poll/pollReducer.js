@@ -18,8 +18,32 @@ const Reducer = (state, action) => {
                 loading: false
             }
         }
+        case GET_VOTES: 
+            return {
+                ...state,
+                polls: action.payload,
+                loading: false
+            }
+        case CREATE_POLL:
+            return {
+                ...state,
+                polls: action.payload,
+                loading: false
+            }
+        case GET_BUCKET_OF_POLL:
+            return {
+                ...state,
+                buckets: action.payload,
+                loading: false
+            }
+        case GET_BUCKET:
+            return {
+                ...state,
+                buckets: action.payload,
+                loading: false
+            }
         default: 
-            return state
+        
     }
 }
 
