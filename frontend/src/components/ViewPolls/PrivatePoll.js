@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import HowToVoteIcon from '@mui/icons-material/HowToVote';
+
 
 
 const PrivatePoll = ({ poll }) => {
@@ -19,9 +21,9 @@ const PrivatePoll = ({ poll }) => {
                         <h1>Votes: {90}</h1>
                     </div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={2}>
                     <div className="vote-button">
-                        <Button color="success" variant="contained">
+                        <Button size="small" variant="contained" endIcon={<HowToVoteIcon />}>
                             <Link to={`/poll/${poll.id}`}>Vote</Link>
                         </Button>
                     </div>
