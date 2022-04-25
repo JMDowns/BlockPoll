@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import HowToVoteIcon from '@mui/icons-material/HowToVote';
 
 import VoteSuccess from '../components/Vote/VoteSuccess'
+import {GlobalStyles, } from '../components/StyledComponents/GlobalStyles.style'
 
 const Vote = () => {
 
@@ -46,6 +47,7 @@ const Vote = () => {
 
     return (
         <Fragment>
+        <GlobalStyles />
         {submitted ? <VoteSuccess title={title}/> : 
         <div className="vote">
             <h1>{title}</h1>

@@ -72,7 +72,6 @@ img {
 .poll-graph {
   display: flex; 
   flex-direction: column-reverse; 
-  margin-top: 10%;
 }
 
 .poll {

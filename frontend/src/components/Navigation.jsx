@@ -17,9 +17,6 @@ function Navigation() {
                 <li>
                     <Link to='/viewPolls'>View Polls</Link>
                 </li>
-                <li>
-                    <Link to='/about'>About</Link>
-                </li>
             </ul>
         </div>
     )
