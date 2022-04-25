@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import PublicPoll from './PublicPoll'
 import PrivatePoll from './PrivatePoll'
 
+// mock data
 const polls = [
     {
         name: "Cats or Dogs?",
