@@ -1,10 +1,12 @@
-import React, {useState, } from 'react'
+import React, {useState, useEffect, } from 'react'
+import axios from 'axios'
 
 import {PollFormContainer, PollFormContent, PollFormHeader, PollForm, QuestionContainer,  PollFormLabel,  } from '../StyledComponents/CreatePollForm.style'; 
-import {StyledTextField, Block, StyledButton } from '../StyledComponents/CreatePollForm.style'; 
+import {StyledTextField, Block, StyledButton, CreatePollPage } from '../StyledComponents/CreatePollForm.style'; 
 
 import Switch from '@mui/material/Switch';
 import SuccessCreatePoll from './SucessCreatePoll'
+
 
 
 export default function CreatePollForm() {
@@ -20,8 +22,24 @@ export default function CreatePollForm() {
 
     const [submitted, setSubmitted] = useState(false)
 
+    // useEffect(() => {
+    //     axios.get('http://localhost:8000/poll_list').then(res => {
+    //         console.log(res.data.buckets)
+    //     })
+    //     .catch((error) => console.log(error))
+    // })
+
     // POST REQUEST TO THE BACKEND // 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
+        // try {
+        //     const polls = await axios.get('http://localhost:8000/')
+        //     console.log(polls)
+        // }
+        // catch (err) {
+        //     console.log(err)
+        // }
+
         e.preventDefault() 
         setSubmitted(true) 
     }
@@ -55,7 +73,8 @@ export default function CreatePollForm() {
     }
 
     return (
-        <div className ="CreatePollPageBody">
+        <div>
+        <CreatePollPage className="WHOLEPAGE">
             {submitted ? <SuccessCreatePoll sub={setSubmitted} />  : //PUT THE SUCCESSCREATEPOLL HERE
             <PollFormContainer name="pollcontainer" height="105%">
                 <PollFormHeader name="header">
@@ -124,13 +143,13 @@ export default function CreatePollForm() {
                                     alignItems="center" 
                                     justifyContent="center"
                                     height="10%">
-                            <StyledButton type="submit" onSubmit={handleSubmit}>Create Poll</StyledButton>
+                            <StyledButton type="submit" variant="contained">Create Poll</StyledButton>
                         </Block>
                     </PollForm>
                 </PollFormContent>
             </PollFormContainer>
             }
+        </CreatePollPage>
         </div>
-
     )
 }

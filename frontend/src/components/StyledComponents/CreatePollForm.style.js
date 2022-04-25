@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-
+// Used
 export const StyledTextField = styled(TextField)`
-    width: 90%;
+    width: 85%;
     background: #F8FAFC;
     border-radius: 4px;
 `
 
-
+// Used
 export const PollFormContainer = styled.div`
-    margin-top: 119px; 
+    margin: auto; 
+    margin-top: 12%;
 
-    position: absolute;
-    width: 1048px;
-    height: 1032px;
-    left: 403px;
-    top: 207px;
+    width: 50%;
+    height: 100%; 
+
 
     border-radius: 10px; 
     box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.25);
@@ -25,34 +25,40 @@ export const PollFormContainer = styled.div`
     background: #C4C4C4;
 `
 
+// Used
 export const PollFormHeader = styled.h2`
     text-align: center; 
 
     font-family: Alata;
     font-style: normal;
     font-weight: normal;
-    font-size: 64px;
+    font-size: 400%;
     line-height: 88px;
 
     color: #000000;
 
+    background-color: #44A3B0;
+    border-radius: 10px 10px 1px 1px; 
+
 `
 
+// Used needs changes 
 export const PollFormContent = styled.div`
     margin: auto;
     width: 90%;
     height: 75%; 
-    border: 3px solid green;
+    ${'' /* border: 3px solid red; */}
     padding: 10px;
     
 ;
 `
 
+// used needs changes 
 export const PollForm = styled.form`
     margin: auto;
-    width: 80%;
+    width: 50%;
     height: 80%;
-    border: 3px solid green;
+    ${'' /* border: 3px solid green; */}
     padding: 10px;
     position: absolute;
 
@@ -64,26 +70,12 @@ export const PollForm = styled.form`
 
 `
 
+
+// Used 
 export const QuestionContainer = styled.div`
     ${'' /* display: flex;  */}
     flex-direction: column; 
     flex-wrap: wrap; 
-`
-
-export const PollTitle = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    ${'' /* margin: auto;  */}
-
-    width: 90%; 
-
-    border: 3px solid green;
-
-
-
-    position: absolute;
 `
 
 export const PollFormLabel = styled.label`
@@ -95,9 +87,13 @@ export const PollFormLabel = styled.label`
     letter-spacing: 0.01em;
     padding: 4px; 
 
-    transition: all .1s ease-in-out;
+    vertical-align: middle;
+
+    margin-bottom: 1%;
+
+    transition: all .1s linear;
     &:hover {
-        transform: scale(1.05); 
+        transform: scale(1.01); 
     }
 `
 
@@ -135,4 +131,23 @@ export const PollFormInput = styled.input`
         padding: 5px;
     }
 
+`
+
+export const Block = styled.div`
+    margin-bottom: ${props => props.marginBottom};
+    display: flex;
+    flex-direction: column;
+`
+
+export const StyledButton = styled(Button)`
+    width: 50%;
+    position: absolute; 
+`
+
+export const CreatePollPage = styled.div`
+    position: absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
 `

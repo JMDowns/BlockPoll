@@ -1,13 +1,11 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
 import { GlobalStyles, } from '../components/StyledComponents/GlobalStyles.style';
-import CreatePollForm from '../components/CreatePollForm';
+import CreatePollForm from '../components/CreatePollPage/CreatePollForm';
 
 export default function CreatePoll (){
     return (
-        <div>
-        <GlobalStyles /> 
-            <Navigation /> 
+        <div className="CreatePollPage" style={{height: "100%", display: "flex", flexDirection: "column" }}>
+            <GlobalStyles /> 
             <CreatePollForm /> 
         </div>
     )

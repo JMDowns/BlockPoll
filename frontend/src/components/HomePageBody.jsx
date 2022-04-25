@@ -1,5 +1,5 @@
 import React from 'react'
-import {IntroCard, CardTitle, CardText, DefaultCard } from './StyledComponents/HomePageBody.style';
+import { IntroCard, CardTitle, CardText, DefaultCard } from './StyledComponents/HomePageBody.style';
 import pic3 from '../imgs/pic3.jpg';
 
 
