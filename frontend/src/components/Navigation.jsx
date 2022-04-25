@@ -1,24 +1,59 @@
 import React from 'react';
-import { HeaderContainer } from './StyledComponents/HeaderContainer.style';
-import { Icon } from './StyledComponents/Icon.style';
-import iconImg from '../imgs/blockchain.png';
-import { HeaderLinkTitle, HeaderLink, } from './StyledComponents/HeaderLink.style';
-// import Login from './Login';
-
+import { Link } from 'react-router-dom'
 
 function Navigation() {
     return (
-        <HeaderContainer>
-            <div className="container">
-                <Icon src={iconImg} /> 
-                <HeaderLinkTitle to="/"> BlockPoll </HeaderLinkTitle>
-                <HeaderLink to="/CreatePoll" left='451px'> Create Poll </HeaderLink>
-                <HeaderLink to="/ViewPolls" left='727px'> View Polls </HeaderLink>
-                <HeaderLink to="/About" left='983px'> About </HeaderLink>
-                {/* <Login />  */}
-            </div>
-        </HeaderContainer>
+        <div className="navbar bg-primary">
+            <h1>
+                BlockPoll
+            </h1>
+            <ul>
+                <li>
+                    <Link to='/'>Home</Link>
+                </li>
+                <li>
+                    <Link to='/createPoll'>Create Poll</Link>
+                </li>
+                <li>
+                    <Link to='/viewPolls'>View Polls</Link>
+                </li>
+                <li>
+                    <Link to='/about'>About</Link>
+                </li>
+            </ul>
+        </div>
     )
 }
 
 export default Navigation;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // <HeaderContainer className="Header">
+        //     <div className="container">
+        //         <Icon src={iconImg} /> 
+        //         <HeaderLinkTitle to="/"> BlockPoll </HeaderLinkTitle>
+        //         <HeaderLink to="/CreatePoll" left='451px'> Create Poll </HeaderLink>
+        //         <HeaderLink to="/ViewPolls" left='727px'> View Polls </HeaderLink>
+        //         <HeaderLink to="/About" left='983px'> About </HeaderLink>
+        //         {/* <Login />  */}
+        //     </div>
+        // </HeaderContainer>

@@ -17,7 +17,7 @@ export default function SucessCreatePoll() {
         <PollFormContainer className="SuccessCard" height="50%">
             <PollFormHeader>Poll Created</PollFormHeader>
             <Block alignItems="center">
-                <NavLink to="/">
+                <NavLink to="/viewPolls">
                     <StyledButton>View Poll</StyledButton>
                 </NavLink>
                 <PollFormLabel>Or</PollFormLabel>
