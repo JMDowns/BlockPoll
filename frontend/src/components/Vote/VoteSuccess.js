@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { PieChart, Pie, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Cell } from 'recharts'
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom'
 
 
 const data = [
@@ -58,7 +59,7 @@ const VoteSuccess = ({ title }) => {
         <div className="vote">
         <h1>{title}</h1>
         <Grid container>
-            <Grid item xs={4}>
+            {/* <Grid item xs={4}>
                 <h1>Dogs</h1>
             </Grid>
             <Grid item xs={4}>
@@ -66,7 +67,7 @@ const VoteSuccess = ({ title }) => {
             </Grid>
             <Grid item xs={4}>
                 <h1>Birds</h1>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
                 <div className="poll-graph">
                 {chartType === 'bar' ? 
@@ -86,7 +87,9 @@ const VoteSuccess = ({ title }) => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="votes" fill="#8884d8" />
+                        <Bar dataKey="votes">
+                            {data02.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
+                        </Bar>
                     </BarChart>
                 }
                 <h2>Votes: {90}</h2>
@@ -99,15 +102,18 @@ const VoteSuccess = ({ title }) => {
 
             </Grid>
             <Grid item xs={3}>
-                <Button 
-                    variant="contained" 
-                    size="large" 
-                    // endIcon={<HowToVoteIcon />} 
-                    style={{ width: '80%' }}
-                    // onClick={handleVote}
-                >
-                        Vote
-                </Button>
+                <Link to='/viewPolls'>
+                    <Button 
+                        variant="contained" 
+                        size="large" 
+                        // endIcon={<HowToVoteIcon />} 
+                        style={{ width: '80%' }}
+                        // onClick={handleVote}
+                    >
+                        View Polls
+                    </Button>
+                </Link>
+
             </Grid>
 
         </Grid>

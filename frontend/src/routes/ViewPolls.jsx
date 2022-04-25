@@ -22,7 +22,7 @@ export default function ViewPolls() {
                     <Button variant="contained" size="large" fullWidth={true} onClick={handlePrivate}>Private</Button>
                 </li>
             </ul>
-                {status ? <Polls status={status}/> : <p>View the Polls</p>}
+                {status && <Polls status={status}/>}
         </Fragment>
     )
 }
