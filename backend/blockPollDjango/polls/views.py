@@ -116,7 +116,7 @@ def poll_create(request, poll_id, poll_text):
     Create a poll
     """
     try:
-        poll = Poll.objects.get(poll=poll_id)
+        poll = Poll.objects.get(poll_id=poll_id)
         return Response(status=status.HTTP_409_CONFLICT)
     except Poll.DoesNotExist:
         pass
