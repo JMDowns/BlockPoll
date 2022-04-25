@@ -7,7 +7,7 @@ export const GET_VOTES = 'GET_VOTES'
 export const CAST_VOTE = 'CAST_VOTE'
 
 
-
+export const SET_LOADING = 'SET_LOADING'
 
 
 export const GET_RECENT_POLLS = 'GET_RECENT_POLLS'

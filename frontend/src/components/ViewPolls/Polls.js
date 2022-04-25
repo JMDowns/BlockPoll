@@ -1,35 +1,10 @@
-import React, {Fragment } from 'react'
+import React, {useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import PublicPoll from './PublicPoll'
 import PrivatePoll from './PrivatePoll'
+import PollContext from '../../context/poll/pollContext'
 
 // mock data
-const polls = [
-    {
-        name: "Cats or Dogs?",
-        id: 1
-    },
-    {
-        name: "Ice Cream",
-        id: 2
-    },    
-    {
-        name: "Java || Bedrock",
-        id: 3
-    },
-    {
-        name: "Mario || Sonic",
-        id: 4
-    },
-    {
-        name: "Coke or Pepsi?",
-        id: 5
-    },
-    {
-        name: "C++ or C",
-        id: 6
-    },
-]
 const polls2 = [
     {
         name: "no",
@@ -45,12 +20,16 @@ const polls2 = [
     },
 ]
 const Polls = ({ status }) => {
+    const pollContext = useContext(PollContext) 
+
+    const { polls } = pollContext
+
     return (
         <div style={pollStyle}>
             {status === 'public' ? polls.map(poll => (
-                <PublicPoll poll={poll} key={poll.id} />
+                <PublicPoll poll={poll} key={poll.poll_id} />
             )) : polls2.map(poll => (
-                <PrivatePoll poll={poll} key={poll.id} />
+                <PrivatePoll poll={poll} key={poll.poll_id} />
             )) }
         </div>
     )

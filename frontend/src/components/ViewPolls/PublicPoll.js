@@ -12,7 +12,7 @@ const PublicPoll = ({ poll }) => {
             <Grid container>
                 <Grid item xs={9}>
                     <div className='poll-title'>
-                        <h1>{poll.name}</h1>
+                        <h1>{poll.poll_text}</h1>
                     </div>
                 </Grid>
                 <Grid item xs={8}>

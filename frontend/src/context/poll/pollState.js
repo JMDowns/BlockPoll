@@ -9,7 +9,8 @@ import {
     GET_BUCKET,
     CREATE_BUCKET,
     GET_VOTES,
-    CAST_VOTE
+    CAST_VOTE,
+    SET_LOADING
 } from '../types'
 
 
@@ -24,6 +25,14 @@ const PollState = props => {
     const [state, dispatch] = useReducer(PollReducer, initialState) 
 
     // Get Polls
+    const getPolls = async () => {
+        setLoading()
+        const res = await axios.get('http://localhost:8000/poll_list')
+        dispatch({
+            type: GET_POLLS,
+            payload: res.data
+        })
+    }
 
     // Create Poll 
 
@@ -34,8 +43,14 @@ const PollState = props => {
     // Create bucket
 
     // Get votes
+    // const getVotes = async()
 
     // Cast Vote
+
+    // set loading
+    const setLoading = () => {
+        dispatch({ type: SET_LOADING})
+    }
 
 
     return <PollContext.Provider
@@ -44,6 +59,7 @@ const PollState = props => {
             poll: state.poll,
             buckets: state.buckets,
             loading: state.loading,
+            getPolls,
         }}>
         {props.children}
         </PollContext.Provider> 

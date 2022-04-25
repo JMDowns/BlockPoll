@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import HowToVoteIcon from '@mui/icons-material/HowToVote';
@@ -39,16 +40,21 @@ export default function SucessCreatePoll(props) {
                 </Grid>
                 <Grid item xs={6}>
                     <div className="poll-button-container">
-                        <Button variant='contained' endIcon={<HowToVoteIcon />}>
-                            Vote on this Poll 
-                        </Button>
+                        <Link to={`poll/${id}`}>
+                            <Button variant='contained' endIcon={<HowToVoteIcon />}>
+                                    Vote on this Poll 
+                            </Button>
+                        </Link>
+
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <div className="poll-button-container">
-                        <Button variant='contained' endIcon={<PollIcon />}>
-                            View Other Polls 
-                        </Button>
+                        <Link to='/viewPolls'>
+                            <Button variant='contained' endIcon={<PollIcon />}>
+                                View Other Polls 
+                            </Button>
+                        </Link>
                     </div>
                 </Grid>
             </Grid>

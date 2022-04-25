@@ -1,9 +1,10 @@
-import React, { useState, Fragment, } from 'react'
+import React, { useState, useEffect, useContext, Fragment, } from 'react'
 import Button from '@mui/material/Button';
 import { GlobalStyles, } from '../components/StyledComponents/GlobalStyles.style';
 import Polls from '../components/ViewPolls/Polls'
 import PublicIcon from '@mui/icons-material/Public';
 import PublicOffIcon from '@mui/icons-material/PublicOff';
+import PollContext from '../context/poll/pollContext'
 
 
 export default function ViewPolls() {
@@ -11,6 +12,12 @@ export default function ViewPolls() {
 
     const handlePrivate = () => setStatus('private')
     const handlePublic= () => setStatus('public')
+
+    const pollContext = useContext(PollContext) 
+
+    useEffect(() => {
+        pollContext.getPolls() 
+    }, [])
 
     return (
         <Fragment>
