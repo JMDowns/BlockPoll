@@ -40,7 +40,7 @@ export default function SucessCreatePoll(props) {
                 </Grid>
                 <Grid item xs={6}>
                     <div className="poll-button-container">
-                        <Link to={`poll/${id}`}>
+                        <Link to={`/poll/${id}`}>
                             <Button variant='contained' endIcon={<HowToVoteIcon />}>
                                     Vote on this Poll 
                             </Button>

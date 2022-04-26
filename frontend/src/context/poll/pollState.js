@@ -10,17 +10,20 @@ import {
     CREATE_BUCKET,
     GET_VOTES,
     CAST_VOTE,
-    SET_LOADING
+    SET_LOADING,
+    GET_TOTAL_VOTES,
+    GET_POLL
 } from '../types'
 
 
 const PollState = props => {
     const initialState = {
         polls: [],
-        poll: {},
+        poll: {
+            votes: 0 
+        },
         buckets: [],
         loading: false,
-        votes: 0
     }
 
     const [state, dispatch] = useReducer(PollReducer, initialState) 
@@ -35,15 +38,25 @@ const PollState = props => {
         })
     }
 
+    const getPoll = async (poll_id) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/get_poll/${poll_id}`)
+        dispatch({
+            type: GET_POLL,
+            payload: res.data
+        })
+    }
+
     // Create Poll   
     const createPoll = async (poll_id, poll_text) => {
         setLoading()
-        const res = await axios.get(`http://localhost:8000/poll_create/${poll_id}/${poll_text}`)
+        const res = await axios.post(`http://localhost:8000/poll_create/${poll_id}/${poll_text}`)
             dispatch({
                 type: CREATE_POLL,
             payload: res.data
             })
         }
+
     // Get buckets of a poll
     const getPollBuckets = async (poll_id) => {
         setLoading()
@@ -67,7 +80,7 @@ const PollState = props => {
     // Create bucket
     const createBucket = async (poll, bucket_name) => {
         setLoading()
-        const res = await axios.get(`http://localhost:8000/bucket_create/${poll}/${bucket_name}`)
+        const res = await axios.post(`http://localhost:8000/bucket_create/${poll}/${bucket_name}`)
         dispatch({
             type: GET_BUCKET,
             payload: res.data
@@ -84,11 +97,21 @@ const PollState = props => {
         })
     }
 
+    const getTotalVotes = async (poll_id) => {
+        setLoading()
+        const res = await axios.get(`http://localhost:8000/get_votes/${poll_id}`)
+        console.log(res.data)
+        dispatch({
+            type: GET_TOTAL_VOTES,
+            payload: res.data
+        })
+    }
+
 
     // Cast Vote
     const castVote = async (poll_id, bucket_name) => {
         setLoading()
-        const res = await axios.get(`http://localhost:8000/cast_vote/${poll_id}${bucket_name}`)
+        const res = await axios.post(`http://localhost:8000/cast_vote/${poll_id}/${bucket_name}`)
         dispatch({
             type: CAST_VOTE,
             payload: res.data
@@ -108,7 +131,17 @@ const PollState = props => {
             poll: state.poll,
             buckets: state.buckets,
             loading: state.loading,
+            votes: state.poll.votes,
             getPolls,
+            getPoll,
+            createPoll,
+            getPollBuckets,
+            getBucket,
+            createBucket,
+            getVotes,
+            castVote,
+            setLoading,
+            getTotalVotes
         }}>
         {props.children}
         </PollContext.Provider> 

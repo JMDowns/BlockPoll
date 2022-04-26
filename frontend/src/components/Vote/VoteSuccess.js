@@ -5,42 +5,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 
 
-const data = [
-    {
-      "name": "Dogs",
-      "votes": 30
-    },
-    {
-      "name": "Cats",
-      "votes": 30
-    },
-    {
-      "name": "Birds",
-      "votes": 30
-    },
-  ]
-const data01 = [
-    {
-      "name": "Group A",
-      "value": 400
-    }
-  ];
-  const data02 = [
-    {
-      "name": "Dogs",
-      "value": 30
-    },
-    {
-      "name": "Cats",
-      "value": 30
-    },
-    {
-      "name": "Birds",
-      "value": 30
-    },
-  ];
-
-const VoteSuccess = ({ title }) => {
+const VoteSuccess = ({ title, data, totalVotes }) => {
 
     const [chartType, setChartType] = useState('bar')
 
@@ -59,24 +24,12 @@ const VoteSuccess = ({ title }) => {
         <div className="vote">
         <h1>{title}</h1>
         <Grid container>
-            {/* <Grid item xs={4}>
-                <h1>Dogs</h1>
-            </Grid>
-            <Grid item xs={4}>
-                <h1>Cats</h1>
-            </Grid>
-            <Grid item xs={4}>
-                <h1>Birds</h1>
-            </Grid> */}
             <Grid item xs={12}>
                 <div className="poll-graph">
                 {chartType === 'bar' ? 
                     <PieChart width={300} height={250}>
-                        {/* <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} >
-                            {data01.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
-                        </Pie> */}
-                        <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} label>
-                            {data02.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
+                        <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} label>
+                            {data.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
                         </Pie>
                         <Legend />
                     </PieChart> 
@@ -88,11 +41,11 @@ const VoteSuccess = ({ title }) => {
                         <Tooltip />
                         <Legend />
                         <Bar dataKey="votes">
-                            {data02.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
+                            {data.map((entry, index) => <Cell fill={barColors[index % barColors.length]} />)}
                         </Bar>
                     </BarChart>
                 }
-                <h2>Votes: {90}</h2>
+                <h2>Votes: {totalVotes+1}</h2>
                 </div>
             </Grid>
             <Grid item xs={1}>

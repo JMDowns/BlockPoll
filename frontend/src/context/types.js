@@ -8,7 +8,8 @@ export const CAST_VOTE = 'CAST_VOTE'
 
 
 export const SET_LOADING = 'SET_LOADING'
-
+export const GET_TOTAL_VOTES = 'GET_TOTAL_VOTES'
+export const GET_POLL = 'GET_POLL'
 
 export const GET_RECENT_POLLS = 'GET_RECENT_POLLS'
 export const DELETE_POLL = 'DELETE_POLL'

@@ -13,7 +13,7 @@ const PrivatePoll = ({ poll }) => {
             <Grid container>
                 <Grid item xs={9}>
                     <div className='poll-title'>
-                        <h1>{poll.name}</h1>
+                        <h1>{poll.poll_text}</h1>
                     </div>
                 </Grid>
                 <Grid item xs={8}>
@@ -24,7 +24,7 @@ const PrivatePoll = ({ poll }) => {
                 <Grid item xs={2}>
                     <div className="vote-button">
                         <Button size="small" variant="contained" endIcon={<HowToVoteIcon />}>
-                            <Link to={`/poll/${poll.id}`}>Vote</Link>
+                            <Link to={`/poll/${poll.poll_id}`}>Vote</Link>
                         </Button>
                     </div>
                 </Grid>

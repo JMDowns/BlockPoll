@@ -5,7 +5,10 @@ import {
     GET_BUCKET,
     CREATE_BUCKET,
     GET_VOTES,
-    CAST_VOTE
+    CAST_VOTE,
+    SET_LOADING,
+    GET_TOTAL_VOTES,
+    GET_POLL
 } from '../types'
 
 
@@ -15,6 +18,13 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 polls: action.payload,
+                loading: false
+            }
+        }
+        case GET_POLL: {
+            return {
+                ...state,
+                poll: action.payload,
                 loading: false
             }
         }
@@ -60,9 +70,21 @@ const Reducer = (state, action) => {
                 buckets: action.payload,
                 loading: false
             }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+        case GET_TOTAL_VOTES:
+            return {
+                ...state,
+                votes: action.payload,
+                loading: false
+            }
         
         default: 
-        
+            return state
+
     }
 }
 

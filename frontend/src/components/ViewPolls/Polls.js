@@ -4,21 +4,7 @@ import PublicPoll from './PublicPoll'
 import PrivatePoll from './PrivatePoll'
 import PollContext from '../../context/poll/pollContext'
 
-// mock data
-const polls2 = [
-    {
-        name: "no",
-        id: 1
-    },
-    {
-        name: "no",
-        id: 2
-    },    
-    {
-        name: "no",
-        id: 3
-    },
-]
+
 const Polls = ({ status }) => {
     const pollContext = useContext(PollContext) 
 
@@ -28,7 +14,7 @@ const Polls = ({ status }) => {
         <div style={pollStyle}>
             {status === 'public' ? polls.map(poll => (
                 <PublicPoll poll={poll} key={poll.poll_id} />
-            )) : polls2.map(poll => (
+            )) : polls.map(poll => (
                 <PrivatePoll poll={poll} key={poll.poll_id} />
             )) }
         </div>
