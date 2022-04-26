@@ -28,6 +28,7 @@ urlpatterns = [
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
     path('poll_list', views.poll_list),
     path('get_recent_polls', views.get_recent_polls),
+    path('get_poll/<int:poll_id>', views.get_poll),
     path('bucket_details/<int:poll>/<str:bucket_name>', views.bucket_details),
     path('get_buckets_of_poll/<int:poll_id>', views.get_buckets_of_poll),
     path('bucket_create/<int:poll>/<str:bucket_name>', views.bucket_create),
@@ -35,6 +36,7 @@ urlpatterns = [
     path('bucket_delete/<int:poll>/<str:bucket_name>', views.bucket_delete),
     path('bucket_update_name/<int:poll>/<str:bucket_name>/<str:bucket_new_name>', views.bucket_update_name),
     path('get_votes/<int:poll_id>/<str:bucket_name>', views.get_votes),
+    path('get_votes/<int:poll_id>', views.get_total_votes),
     path('cast_vote/<int:poll_id>/<str:bucket_name>', views.cast_vote),
     path('poll_delete/<int:poll_id>', views.poll_delete),
     

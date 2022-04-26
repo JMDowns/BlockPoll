@@ -61,6 +61,26 @@ def get_votes(request, poll_id, bucket_name):
 
     return Response(rippleDao.retrieve_votes(bucket.wallet_address))
 
+@api_view(['GET'])
+def get_total_votes(request, poll_id):
+    authentication_classes = []
+    permission_classes = []
+    try:
+        buckets = Bucket.objects.filter(actual_poll_id=poll_id)
+    except Bucket.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    total_votes = 0
+
+    print(buckets)
+    
+    for bucket in buckets:
+        votes = rippleDao.retrieve_votes(bucket.wallet_address)
+        print(votes)
+        total_votes += votes
+    
+    return Response(total_votes)
+
 @api_view(['POST'])
 def cast_vote(request, poll_id, bucket_name):
     authentication_classes = []
@@ -73,6 +93,12 @@ def cast_vote(request, poll_id, bucket_name):
     rippleDao.cast_vote(bucket.wallet_address)
 
     return Response()
+
+@api_view(['GET'])
+def get_poll(request, poll_id):
+    poll_obj = Poll.objects.get(poll_id=poll_id)
+    serializer = PollSerializer(poll_obj)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def bucket_create(request, poll, bucket_name):
