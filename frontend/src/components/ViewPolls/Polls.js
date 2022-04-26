@@ -1,8 +1,9 @@
-import React, {useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import PublicPoll from './PublicPoll'
 import PrivatePoll from './PrivatePoll'
 import PollContext from '../../context/poll/pollContext'
+import Spinner from '../layout/Spinner'
 
 // mock data
 const polls2 = [
@@ -22,17 +23,22 @@ const polls2 = [
 const Polls = ({ status }) => {
     const pollContext = useContext(PollContext) 
 
-    const { polls } = pollContext
+    const { polls, loading } = pollContext
 
-    return (
-        <div style={pollStyle}>
-            {status === 'public' ? polls.map(poll => (
-                <PublicPoll poll={poll} key={poll.poll_id} />
-            )) : polls2.map(poll => (
-                <PrivatePoll poll={poll} key={poll.poll_id} />
-            )) }
-        </div>
-    )
+    if(loading) {
+        return <Spinner />
+    }
+    else {
+        return (
+            <div style={pollStyle}>
+                {status === 'public' ? polls.map(poll => (
+                    <PublicPoll poll={poll} key={poll.poll_id} />
+                )) : polls2.map(poll => (
+                    <PrivatePoll poll={poll} key={poll.poll_id} />
+                )) }
+            </div>
+        )
+    }
 }
 
 const pollStyle ={

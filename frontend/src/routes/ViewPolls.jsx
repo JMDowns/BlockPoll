@@ -5,6 +5,7 @@ import Polls from '../components/ViewPolls/Polls'
 import PublicIcon from '@mui/icons-material/Public';
 import PublicOffIcon from '@mui/icons-material/PublicOff';
 import PollContext from '../context/poll/pollContext'
+import Spinner from '../components/layout/Spinner'
 
 
 export default function ViewPolls() {
@@ -19,35 +20,40 @@ export default function ViewPolls() {
         pollContext.getPolls() 
     }, [])
 
-    return (
-        <Fragment>
-        <GlobalStyles /> 
-            <h1>View Polls</h1>
-            <ul>
-                <li>
-                    <Button 
+    if(pollContext.loading) {
+        return <Spinner />
+    }
+    else {
+        return (
+            <Fragment>
+            <GlobalStyles /> 
+                <h1>View Polls</h1>
+                <ul>
+                    <li>
+                        <Button 
+                            variant="contained" 
+                            size="large" 
+                            fullWidth={true} 
+                            onClick={handlePublic}
+                            endIcon={<PublicIcon />}
+                        >
+                            Public
+                        </Button>
+                    </li>
+                    <li>
+                        <Button 
                         variant="contained" 
-                        size="large" 
-                        fullWidth={true} 
-                        onClick={handlePublic}
-                        endIcon={<PublicIcon />}
+                        size="large" fullWidth={true} 
+                        onClick={handlePrivate}
+                        endIcon={<PublicOffIcon />}
                     >
-                        Public
+                        Private
                     </Button>
-                </li>
-                <li>
-                    <Button 
-                    variant="contained" 
-                    size="large" fullWidth={true} 
-                    onClick={handlePrivate}
-                    endIcon={<PublicOffIcon />}
-                >
-                    Private
-                </Button>
-                </li>
-            </ul>
-                {status && <Polls status={status}/>}
-        </Fragment>
-    )
+                    </li>
+                </ul>
+                    {status && <Polls status={status}/>}
+            </Fragment>
+        )
+    }
 }
 

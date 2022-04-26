@@ -69,7 +69,7 @@ const PollState = props => {
         setLoading()
         const res = await axios.get(`http://localhost:8000/bucket_create/${poll}/${bucket_name}`)
         dispatch({
-            type: GET_BUCKET,
+            type: CREATE_BUCKET,
             payload: res.data
         })
     }
@@ -108,7 +108,14 @@ const PollState = props => {
             poll: state.poll,
             buckets: state.buckets,
             loading: state.loading,
+            votes: state.votes,
             getPolls,
+            createPoll,
+            getPollBuckets,
+            getBucket,
+            createBucket,
+            getVotes,
+            castVote
         }}>
         {props.children}
         </PollContext.Provider> 
