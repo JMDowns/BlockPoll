@@ -9,4 +9,4 @@ class PollSerializer(serializers.ModelSerializer):
 class BucketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bucket
-        fields = ['poll', 'bucket_name', 'wallet_address']
+        fields = ['poll', 'actual_poll_id', 'bucket_name', 'wallet_address']
